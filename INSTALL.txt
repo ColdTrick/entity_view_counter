@@ -1,0 +1,7 @@
+= Installation instrauctions =
+
+Once this plugin is enabled it will NOT track anything by default.
+
+Go to the plugin settings (http://your-site-url/admin/plugin_settings/entity_view_counter) and select the entity types you wish to track.
+
+If you enabled or disabled a plugin, please revisit the plugin settings page. Their may be more/less entity types available, check if the configuration is still what your want.
