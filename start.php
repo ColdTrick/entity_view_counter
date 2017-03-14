@@ -1,25 +1,57 @@
 <?php
 
-	define("ENTITY_VIEW_COUNTER_ANNOTATION_NAME", "view_counter");
+define('ENTITY_VIEW_COUNTER_ANNOTATION_NAME', 'view_counter');
 
-	require_once(dirname(__FILE__) . "/lib/functions.php");
-	require_once(dirname(__FILE__) . "/lib/hooks.php");
+elgg_register_event_handler('init', 'system', 'entity_view_counter_init');
+elgg_register_event_handler('ready', 'system', 'entity_view_counter_ready');
+
+function entity_view_counter_init() {
+	// register plugin hooks
+	elgg_register_plugin_hook_handler('permissions_check:annotate', 'all', '\ColdTrick\EntityViewCounter\Permissions::canAnnotate');
+	elgg_register_plugin_hook_handler('register', 'menu:entity', '\ColdTrick\EntityViewCounter\Menus::registerEntity', 502);
+	elgg_register_plugin_hook_handler('setting', 'plugin', '\ColdTrick\EntityViewCounter\Settings::saveSettingEntityTypes');
+}
+
+function entity_view_counter_ready() {
+	// extend views of configured entity types/subtypes
+	$registered_types = elgg_get_config('registered_entities');
+	if (empty($registered_types)) {
+		return;
+	}
 	
-	elgg_register_event_handler("init", "system", "entity_view_counter_init");
-	elgg_register_event_handler("pagesetup", "system", "entity_view_counter_pagesetup");
-	
-	function entity_view_counter_init() {
-		// extend css
-		elgg_extend_view("css/elgg", "css/entity_view_counter/site");
-		elgg_extend_view("css/admin", "css/entity_view_counter/admin");
+	// let's extend the base views of these entities
+	foreach ($registered_types as $type => $subtypes) {
 		
-		// register plugin hooks
-		elgg_register_plugin_hook_handler("permissions_check:annotate", "all", "entity_view_counter_permissions_check_annotate_hook");
-		elgg_register_plugin_hook_handler("register", "menu:entity", "entity_view_counter_entity_menu_hook", 502);
-		elgg_register_plugin_hook_handler("setting", "plugin", "entity_view_counter_plugin_setting_hook");
+		if (!empty($subtypes) && is_array($subtypes)) {
+			foreach ($subtypes as $subtype) {
+				elgg_extend_view($type . '/' . $subtype, 'entity_view_counter/extends/counter', 450);
+			}
+		} else {
+			// user and group don't have a subtype
+			elgg_extend_view($type . '/default', 'entity_view_counter/extends/counter', 450);
+		}
+	}
+}
+
+function entity_view_counter_is_configured_entity_type($type, $subtype = '') {
+	
+	$setting = elgg_get_plugin_setting('entity_types', 'entity_view_counter');
+	if (empty($setting)) {
+		return false;
 	}
 	
-	function entity_view_counter_pagesetup() {
-		// extend views of configured entity types/subtypes
-		entity_view_counter_extend_views();
+	$setting = json_decode($setting, true);
+	
+	$configured_subtypes = elgg_extract($type, $setting);
+	if ($configured_subtypes === null) {
+		// no types
+		return false;
 	}
+	
+	if (empty($subtype) && empty($configured_subtypes)) {
+		// no subtype requested and none are configured
+		return true;
+	}
+	
+	return (bool) elgg_extract($subtype, $configured_subtypes, false);
+}
