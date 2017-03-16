@@ -1,5 +1,10 @@
 # Entity view counter
 
+[![Build Status](https://scrutinizer-ci.com/g/ColdTrick/entity_view_counter/badges/build.png?b=master)](https://scrutinizer-ci.com/g/ColdTrick/entity_view_counter/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ColdTrick/entity_view_counter/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ColdTrick/entity_view_counter/?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/coldtrick/entity_view_counter/v/stable.svg)](https://packagist.org/packages/coldtrick/entity_view_counter)
+[![License](https://poser.pugx.org/coldtrick/entity_view_counter/license.svg)](https://packagist.org/packages/coldtrick/entity_view_counter)
+
 Count the views of the configured registered entity types. The views will only be counted on the full view of an entity
 and not for the owner of the entity. Furthermore only one view will be counted per user session.
 
