@@ -1,0 +1,21 @@
+{
+	"name": "coldtrick/entity_view_counter",
+	"description": "Count the views of selected entities",
+	"type": "elgg-plugin",
+	"keywords": ["elgg", "plugin", "stats"],
+	"license": "GPL-2.0",
+	"support": {
+		"source": "https://github.com/ColdTrick/entity_view_counter",
+		"issues": "https://github.com/ColdTrick/entity_view_counter/issues"
+	},
+	"require": {
+		"composer/installers": "^1.0.8"
+	},
+	"require-dev": {
+		"coldtrick/sniffs": "dev-master",
+		"coldtrick/releases": "dev-master"
+	},
+	"conflict": {
+		"elgg/elgg": "<2.0"
+	}
+}
