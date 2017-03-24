@@ -1,6 +1,11 @@
 Version history
 ===============
 
+2.0 (2017-03-24):
+
+- changed: increased minimal Elgg version to 2.0
+- changed: updated to latest coding standards
+
 1.0 (2013-06-27):
 
 - first release
