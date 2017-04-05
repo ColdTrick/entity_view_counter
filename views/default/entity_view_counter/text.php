@@ -18,7 +18,9 @@ if ($count == null) {
 if (empty($count)) {
 	return;
 }
+
+$icon_name = elgg_extract('icon_name', $vars, 'eye');
 		
 echo elgg_format_element('span', [
 	'title' => elgg_echo('entity_view_counter:entity:menu:views', [$count]),
-], elgg_view_icon('eye') . $count);
+], elgg_view_icon($icon_name) . $count);
