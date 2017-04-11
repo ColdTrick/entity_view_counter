@@ -15,10 +15,6 @@ if ($count == null) {
 	elgg_set_ignore_access($ia);
 }
 
-if (empty($count)) {
-	return;
-}
-
 $icon_name = elgg_extract('icon_name', $vars, 'eye');
 		
 echo elgg_format_element('span', [
