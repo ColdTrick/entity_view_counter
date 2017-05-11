@@ -1,6 +1,12 @@
 Version history
 ===============
 
+2.1 (2017-05-11):
+
+- added: ability to control icon via a view vars hook
+- added: total count of entity views is now also saved as metadata
+- changed: also show count if count is empty
+
 2.0 (2017-03-24):
 
 - changed: increased minimal Elgg version to 2.0
