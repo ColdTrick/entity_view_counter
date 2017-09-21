@@ -10,6 +10,11 @@ $full_view = elgg_extract('full_view', $vars, false);
 if (!($entity instanceof ElggEntity) || !$full_view) {
 	return;
 }
+
+// a full view in a widget is not something we want to count
+if (elgg_in_context('widgets')) {
+	return;
+}
 	
 // first check if we're allowed to count the views
 if (!$entity->canAnnotate(elgg_get_logged_in_user_guid(), ENTITY_VIEW_COUNTER_ANNOTATION_NAME)) {
