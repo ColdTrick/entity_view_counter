@@ -1,6 +1,10 @@
 Version history
 ===============
 
+2.2 (2017-10-04):
+
+- changed: no longer count full views in a widget context
+
 2.1 (2017-05-11):
 
 - added: ability to control icon via a view vars hook
