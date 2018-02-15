@@ -7,25 +7,21 @@ class Settings {
 	/**
 	 * Modifies the value of the entity_types setting
 	 *
-	 * @param string $hook        hook name
-	 * @param string $entity_type hook type
-	 * @param array  $returnvalue current return value
-	 * @param array  $params      parameters
+	 * @param \Elgg\Hook $hook 'setting', 'plugin'
 	 *
 	 * @return array
 	 */
-	public static function saveSettingEntityTypes($hook, $entity_type, $returnvalue, $params) {
-	
-		$plugin = elgg_extract('plugin', $params);
-		if ($plugin->getID() !== 'entity_view_counter') {
+	public static function saveSettingEntityTypes(\Elgg\Hook $hook) {
+		
+		$plugin = $hook->getParam('plugin');
+		if (!$plugin instanceof \ElggPlugin || $plugin->getID() !== 'entity_view_counter') {
 			return;
 		}
 		
-		$setting = elgg_extract('name', $params);
-		if ($setting !== 'entity_types') {
+		if ($hook->getParam('name') !== 'entity_types') {
 			return;
 		}
-	
-		return json_encode(elgg_extract('value', $params));
+		
+		return json_encode($hook->getParam('value'));
 	}
 }

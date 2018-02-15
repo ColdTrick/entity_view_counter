@@ -1,9 +1,10 @@
 <?php
 
-$registered_types = elgg_get_config('registered_entities');
-$object_types = elgg_extract('object', $registered_types, []);
+$object_types = (array) get_registered_entity_types('object');
 
-echo elgg_view('output/longtext', ['value' => elgg_echo('entity_view_counter:settings:description')]);
+echo elgg_view('output/longtext', [
+	'value' => elgg_echo('entity_view_counter:settings:description'),
+]);
 
 $list_items = '';
 foreach ($object_types as $subtype) {
@@ -14,8 +15,9 @@ foreach ($object_types as $subtype) {
 		'default' => false,
 		'checked' => entity_view_counter_is_configured_entity_type('object', $subtype),
 		'class' => 'mrm',
+		'label' => elgg_echo("item:object:{$subtype}"),
+		'switch' => true,
 	]);
-	$item .= elgg_echo("item:object:{$subtype}");
 	
 	$list_items .= elgg_format_element('li', [], $item);
 }

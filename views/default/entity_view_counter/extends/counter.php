@@ -25,10 +25,12 @@ if (!$entity->canAnnotate(elgg_get_logged_in_user_guid(), ENTITY_VIEW_COUNTER_AN
 // views are locked by session id
 $session_id = session_id();
 
-$existing_annotations = elgg_get_entities_from_annotations([
+$existing_annotations = elgg_get_entities([
 	'guid' => $entity->guid,
-	'annotation_name' => ENTITY_VIEW_COUNTER_ANNOTATION_NAME,
-	'annotation_value' => $session_id,
+	'annotation_name_value_pairs' => [
+		'name' => ENTITY_VIEW_COUNTER_ANNOTATION_NAME,
+		'value' => $session_id,
+	],
 	'count' => true,
 ]);
 
@@ -48,14 +50,16 @@ if (!$annotation_id) {
 
 // store total count in metadata
 $current_count = $entity->entity_view_count;
-if ($current_count === null) {
+if (is_null($current_count)) {
 	// check the annotation count (this includes the just created annotation)
 	$current_count = $entity->countAnnotations(ENTITY_VIEW_COUNTER_ANNOTATION_NAME);
 } else {
 	// update the current count
+	$current_count = (int) $current_count;
+	
 	$current_count++;
 }
 
-$ia = elgg_set_ignore_access(true);
-create_metadata($entity->guid, 'entity_view_count', $current_count, '', $entity->owner_guid, ACCESS_PUBLIC);
-elgg_set_ignore_access($ia);
+elgg_call(ELGG_IGNORE_ACCESS, function () use ($entity, $current_count) {
+	$entity->entity_view_count = $current_count;
+});

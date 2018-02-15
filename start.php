@@ -1,20 +1,34 @@
 <?php
+/**
+ * Main plugin file
+ */
 
 define('ENTITY_VIEW_COUNTER_ANNOTATION_NAME', 'view_counter');
 
+// register default Elgg events
 elgg_register_event_handler('init', 'system', 'entity_view_counter_init');
 elgg_register_event_handler('ready', 'system', 'entity_view_counter_ready');
 
+/**
+ * Called during system init
+ *
+ * @return void
+ */
 function entity_view_counter_init() {
 	// register plugin hooks
 	elgg_register_plugin_hook_handler('permissions_check:annotate', 'all', '\ColdTrick\EntityViewCounter\Permissions::canAnnotate');
-	elgg_register_plugin_hook_handler('register', 'menu:entity', '\ColdTrick\EntityViewCounter\Menus::registerEntity', 502);
+	elgg_register_plugin_hook_handler('register', 'menu:social', '\ColdTrick\EntityViewCounter\Menus::registerSocial');
 	elgg_register_plugin_hook_handler('setting', 'plugin', '\ColdTrick\EntityViewCounter\Settings::saveSettingEntityTypes');
 }
 
+/**
+ * Called during system ready
+ *
+ * @return void
+ */
 function entity_view_counter_ready() {
 	// extend views of configured entity types/subtypes
-	$registered_types = elgg_get_config('registered_entities');
+	$registered_types = get_registered_entity_types();
 	if (empty($registered_types)) {
 		return;
 	}
@@ -33,6 +47,14 @@ function entity_view_counter_ready() {
 	}
 }
 
+/**
+ * Check if a type/subtype is configured to be tracked
+ *
+ * @param string $type    the entity type to check
+ * @param string $subtype the entity subtype to check (optional)
+ *
+ * @return bool
+ */
 function entity_view_counter_is_configured_entity_type($type, $subtype = '') {
 	
 	$setting = elgg_get_plugin_setting('entity_types', 'entity_view_counter');

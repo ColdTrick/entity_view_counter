@@ -7,22 +7,18 @@ class Permissions {
 	/**
 	 * Returns if annotation is allowed
 	 *
-	 * @param string $hook        hook name
-	 * @param string $entity_type hook type
-	 * @param array  $returnvalue current return value
-	 * @param array  $params      parameters
+	 * @param \Elgg\Hook $hook 'permissions_check:annotate', 'all'
 	 *
-	 * @return array
+	 * @return void|bool
 	 */
-	public static function canAnnotate($hook, $entity_type, $returnvalue, $params) {
+	public static function canAnnotate(\Elgg\Hook $hook) {
 
-		$entity = elgg_extract('entity', $params);
-		if (empty($entity)) {
+		$entity = $hook->getEntityParam();
+		if (!$entity instanceof \ElggEntity) {
 			return;
 		}
 		
-		$annotation_name = elgg_extract('annotation_name', $params);
-		if ($annotation_name !== ENTITY_VIEW_COUNTER_ANNOTATION_NAME) {
+		if ($hook->getParam('annotation_name') !== ENTITY_VIEW_COUNTER_ANNOTATION_NAME) {
 			return;
 		}
 		
@@ -33,7 +29,7 @@ class Permissions {
 			}
 		}
 		
-		$user = elgg_extract('user', $params);
+		$user = $hook->getParam('user');
 		
 		// logged out users and not the owner are allowed to be counted
 		if (empty($user) || ($user->guid !== $entity->owner_guid)) {
