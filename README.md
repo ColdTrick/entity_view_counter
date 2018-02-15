@@ -1,5 +1,6 @@
 # Entity view counter
 
+![Elgg 3.0](https://img.shields.io/badge/Elgg-3.0-green.svg)
 [![Build Status](https://scrutinizer-ci.com/g/ColdTrick/entity_view_counter/badges/build.png?b=master)](https://scrutinizer-ci.com/g/ColdTrick/entity_view_counter/build-status/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ColdTrick/entity_view_counter/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ColdTrick/entity_view_counter/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/coldtrick/entity_view_counter/v/stable.svg)](https://packagist.org/packages/coldtrick/entity_view_counter)
@@ -19,4 +20,5 @@ Once this plugin is enabled it will NOT track anything by default.
 
 Go to the plugin settings (http://your-site-url/admin/plugin_settings/entity_view_counter) and select the entity types you wish to track.
 
-If you enabled or disabled a plugin, please revisit the plugin settings page. Their may be more/less entity types available, check if the configuration is still what your want.
+If you enabled or disabled a plugin, please revisit the plugin settings page. Their may be more/less entity types available, check if the 
+configuration is still what your want.
