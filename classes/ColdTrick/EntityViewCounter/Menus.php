@@ -36,6 +36,8 @@ class Menus {
 			return;
 		}
 		
+		$count = $entity->entity_view_count;
+		
 		$result[] = \ElggMenuItem::factory([
 			'name' => 'view_counter',
 			'text' => $text,

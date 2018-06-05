@@ -5,18 +5,15 @@ if (!($entity instanceof \ElggEntity)) {
 	return;
 }
 
-$count = $entity->entity_view_count;
-if ($count == null) {
-	$count = $entity->countAnnotations(ENTITY_VIEW_COUNTER_ANNOTATION_NAME);
-	
-	// store annotation count for future usage from metadata
-	$ia = elgg_set_ignore_access(true);
-	create_metadata($entity->guid, 'entity_view_count', $count, '', $entity->owner_guid, ACCESS_PUBLIC);
-	elgg_set_ignore_access($ia);
+$count = entity_view_counter_get_view_count($entity);
+if ($count === false) {
+	return;
 }
+
+$exact_count = entity_view_counter_get_view_count($entity, true);
 
 $icon_name = elgg_extract('icon_name', $vars, 'eye');
 		
 echo elgg_format_element('span', [
-	'title' => elgg_echo('entity_view_counter:entity:menu:views', [$count]),
+	'title' => elgg_echo('entity_view_counter:entity:menu:views', [$exact_count]),
 ], elgg_view_icon($icon_name) . $count);
