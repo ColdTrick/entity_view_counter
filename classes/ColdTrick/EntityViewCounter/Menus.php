@@ -22,27 +22,20 @@ class Menus {
 			return;
 		}
 		
-		$count = $entity->entity_view_count;
-		if (is_null($count)) {
-			$count = $entity->countAnnotations(ENTITY_VIEW_COUNTER_ANNOTATION_NAME);
-			
-			// store annotation count for future usage from metadata
-			elgg_call(ELGG_IGNORE_ACCESS, function () use ($entity, $count) {
-				$entity->entity_view_count = $count;
-			});
-		}
-		
-		if (empty($count)) {
+		$count = entity_view_counter_get_view_count($entity);
+		if ($count === false) {
 			return;
 		}
+		
+		$exact_count = entity_view_counter_get_view_count($entity, true);
 		
 		$result = $hook->getValue();
 		
 		$result[] = \ElggMenuItem::factory([
 			'name' => 'view_counter',
 			'icon' => 'eye',
-			'text' => elgg_echo('entity_view_counter:entity:menu:views', [$count]),
-			'title' => elgg_echo('entity_view_counter:entity:menu:views', [$count]),
+			'text' => $count,
+			'title' => elgg_echo('entity_view_counter:entity:menu:views', [$exact_count]),
 			'badge' => $count,
 			'href' => false,
 		]);
