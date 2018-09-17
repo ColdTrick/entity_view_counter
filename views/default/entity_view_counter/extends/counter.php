@@ -23,20 +23,22 @@ if (!$entity->canAnnotate(elgg_get_logged_in_user_guid(), ENTITY_VIEW_COUNTER_AN
 
 // check if we didn't already view this entity
 // views are locked by session id
-$session_id = session_id();
+$session = elgg_get_session();
 
-$existing_annotations = elgg_get_entities([
-	'guid' => $entity->guid,
-	'annotation_name_value_pairs' => [
-		'name' => ENTITY_VIEW_COUNTER_ANNOTATION_NAME,
-		'value' => $session_id,
-	],
-	'count' => true,
-]);
+$viewed_guids = $session->get('entity_view_counter', []);
+if (!is_array($viewed_guids)) {
+	$viewed_guids = [];
+}
 
-if ($existing_annotations) {
+if (in_array($entity->guid, $viewed_guids)) {
 	return;
 }
+
+// write to session, for speed
+$viewed_guids[] = $entity->guid;
+$session->set('entity_view_counter', $viewed_guids);
+
+$session_id = $session->getId();
 
 // log the user who is viewing
 // if no logged in user, log by entity
