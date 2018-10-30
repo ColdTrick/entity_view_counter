@@ -20,6 +20,10 @@ class Views {
 			return;
 		}
 		
+		if (!elgg_extract('show_entity_view_counter', $vars, true)) {
+			return;
+		}
+		
 		if (!entity_view_counter_is_configured_entity_type($entity->getType(), $entity->getSubtype())) {
 			return;
 		}
