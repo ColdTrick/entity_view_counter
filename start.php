@@ -17,7 +17,7 @@ elgg_register_event_handler('ready', 'system', 'entity_view_counter_ready');
 function entity_view_counter_init() {
 	// register plugin hooks
 	elgg_register_plugin_hook_handler('permissions_check:annotate', 'all', '\ColdTrick\EntityViewCounter\Permissions::canAnnotate');
-	elgg_register_plugin_hook_handler('register', 'menu:social', '\ColdTrick\EntityViewCounter\Menus::registerSocial');
+	elgg_register_plugin_hook_handler('view_vars', 'object/elements/imprint/contents', '\ColdTrick\EntityViewCounter\Views::addImprint', 600);
 	elgg_register_plugin_hook_handler('setting', 'plugin', '\ColdTrick\EntityViewCounter\Settings::saveSettingEntityTypes');
 }
 
