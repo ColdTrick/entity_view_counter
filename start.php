@@ -111,7 +111,7 @@ function entity_view_counter_get_view_count(ElggEntity $entity, $exact = false) 
 		
 		// store annotation count for future usage from metadata
 		$ia = elgg_set_ignore_access(true);
-		create_metadata($entity->guid, 'entity_view_count', $count, '', $entity->owner_guid, ACCESS_PUBLIC);
+		$entity->entity_view_count = $count;
 		elgg_set_ignore_access($ia);
 	}
 	
