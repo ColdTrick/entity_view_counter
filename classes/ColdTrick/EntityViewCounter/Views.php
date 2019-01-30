@@ -40,7 +40,7 @@ class Views {
 		
 		$imprint = elgg_extract('imprint', $vars, []);
 		$imprint['entity_view_counter'] = [
-			'icon_name' => 'eye',
+			'icon_name' => 'chart-line',
 			'content' => elgg_format_element('span', ['title' => $title], $content),
 		];
 		$vars['imprint'] = $imprint;
