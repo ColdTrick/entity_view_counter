@@ -3,7 +3,7 @@
 	<name>Entity view counter</name>
 	<id>entity_view_counter</id>
 	<author>ColdTrick IT Solutions</author>
-	<version>3.0-beta</version>
+	<version>3.0</version>
 	<description>Count the views of selected entities</description>
 	<website>http://www.coldtrick.com/</website>
 	<repository>https://github.com/ColdTrick/entity_view_counter</repository>
