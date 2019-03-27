@@ -40,6 +40,12 @@ $session->set('entity_view_counter', $viewed_guids);
 
 $session_id = $session->getId();
 
+// write to session, for speed
+$viewed_guids[] = $entity->guid;
+$session->set('entity_view_counter', $viewed_guids);
+
+$session_id = $session->getId();
+
 // log the user who is viewing
 // if no logged in user, log by entity
 $owner_guid = elgg_get_logged_in_user_guid() ?: $entity->guid;

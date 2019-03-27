@@ -1,6 +1,14 @@
 Version history
 ===============
 
+2.3.1 (2018-09-20):
+
+- fixed: slow query in counter check
+
+2.3 (2018-06-15):
+
+- added: shortend count text
+
 2.2 (2017-10-04):
 
 - changed: no longer count full views in a widget context
