@@ -110,9 +110,9 @@ function entity_view_counter_get_view_count(ElggEntity $entity, $exact = false) 
 		$count = $entity->countAnnotations(ENTITY_VIEW_COUNTER_ANNOTATION_NAME);
 		
 		// store annotation count for future usage from metadata
-		$ia = elgg_set_ignore_access(true);
-		$entity->entity_view_count = $count;
-		elgg_set_ignore_access($ia);
+		elgg_call(ELGG_IGNORE_ACCESS, function() use ($entity, $count) {
+			$entity->entity_view_count = $count;
+		});
 	}
 	
 	$count = (int) $count;
