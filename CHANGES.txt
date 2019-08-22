@@ -1,6 +1,10 @@
 Version history
 ===============
 
+3.0.1 (2019-08-22):
+
+- several small chores/fixes
+
 3.0 (2019-03-27):
 
 - added: shortend count text
