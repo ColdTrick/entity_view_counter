@@ -1,65 +1,7 @@
 <?php
 /**
- * Main plugin file
+ * Helper functions are defined here
  */
-
-define('ENTITY_VIEW_COUNTER_ANNOTATION_NAME', 'view_counter');
-
-// register default Elgg events
-elgg_register_event_handler('init', 'system', 'entity_view_counter_init');
-elgg_register_event_handler('ready', 'system', 'entity_view_counter_ready');
-
-/**
- * Called during system init
- *
- * @return void
- */
-function entity_view_counter_init() {
-	// register plugin hooks
-	elgg_register_plugin_hook_handler('permissions_check:annotate', 'all', '\ColdTrick\EntityViewCounter\Permissions::canAnnotate');
-	elgg_register_plugin_hook_handler('view_vars', 'object/elements/imprint/contents', '\ColdTrick\EntityViewCounter\Views::addImprint', 600);
-	elgg_register_plugin_hook_handler('setting', 'plugin', '\ColdTrick\EntityViewCounter\Settings::saveSettingEntityTypes');
-}
-
-/**
- * Called during system ready
- *
- * @return void
- */
-function entity_view_counter_ready() {
-	// extend views of configured entity types/subtypes
-	$registered_types = get_registered_entity_types();
-	if (empty($registered_types)) {
-		return;
-	}
-	
-	// let's extend the base views of these entities
-	foreach ($registered_types as $type => $subtypes) {
-		
-		if (empty($subtypes) || !is_array($subtypes)) {
-			// user and group don't have a subtype
-			elgg_extend_view($type . '/default', 'entity_view_counter/extends/counter', 450);
-			continue;
-		}
-		
-		foreach ($subtypes as $subtype) {
-			// allow for fallback views
-			$views = [
-				"{$type}/{$subtype}",
-				"{$type}/default",
-			];
-			
-			foreach ($views as $baseview) {
-				if (!elgg_view_exists($baseview, '', false)) {
-					continue;
-				}
-				
-				elgg_extend_view($baseview, 'entity_view_counter/extends/counter', 450);
-				break;
-			}
-		}
-	}
-}
 
 /**
  * Check if a type/subtype is configured to be tracked
