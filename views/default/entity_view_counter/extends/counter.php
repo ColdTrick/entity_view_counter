@@ -17,7 +17,7 @@ if (elgg_in_context('widgets')) {
 }
 	
 // first check if we're allowed to count the views
-if (!$entity->canAnnotate(elgg_get_logged_in_user_guid(), ENTITY_VIEW_COUNTER_ANNOTATION_NAME)) {
+if (!entity_view_counter_is_configured_entity_type($entity->getType(), $entity->getSubtype()) || !$entity->canAnnotate(elgg_get_logged_in_user_guid(), ENTITY_VIEW_COUNTER_ANNOTATION_NAME)) {
 	return;
 }
 
