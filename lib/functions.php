@@ -12,13 +12,18 @@
  * @return bool
  */
 function entity_view_counter_is_configured_entity_type($type, $subtype = '') {
+	static $setting;
 	
-	$setting = elgg_get_plugin_setting('entity_types', 'entity_view_counter');
+	if (!isset($setting)) {
+		$setting = elgg_get_plugin_setting('entity_types', 'entity_view_counter');
+		if (!empty($setting)) {
+			$setting = json_decode($setting, true);
+		}
+	}
+	
 	if (empty($setting)) {
 		return false;
 	}
-	
-	$setting = json_decode($setting, true);
 	
 	$configured_subtypes = elgg_extract($type, $setting);
 	if ($configured_subtypes === null) {
