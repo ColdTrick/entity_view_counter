@@ -1,10 +1,13 @@
 <?php
 /**
- * This file was created by Translation Editor v6.1
- * On 2018-06-05 14:33
+ * This file was created by Translation Editor v7.0.4
+ * On 2020-04-01 14:10
  */
 
 return array (
+  'entity_view_counter:settings:num_views' => 'Totaal aantal weergaven',
+  'entity_view_counter:settings:delete' => 'Verwijder alle gevolgde weergaven',
+  'entity_view_counter:action:admin:reset_counter:success' => 'Alle gevolgde weergaven zijn verwijderd',
   'entity_view_counter:separator' => ',',
   'entity_view_counter:view:kilo' => '%sK',
   'entity_view_counter:view:mega' => '%sM',
