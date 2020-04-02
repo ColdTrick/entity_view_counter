@@ -1,10 +1,36 @@
 <?php
 
+use Elgg\Database\Select;
+
 $object_types = (array) get_registered_entity_types('object');
 
 echo elgg_view('output/longtext', [
 	'value' => elgg_echo('entity_view_counter:settings:description'),
 ]);
+
+// get counts for all subtypes
+// this could take a while
+set_time_limit(0);
+
+$select = Select::fromTable('annotations', 'a');
+$e = $select->joinEntitiesTable('a', 'entity_guid');
+$select->select('count(*) as total')
+	->addSelect("{$e}.type")
+	->addSelect("{$e}.subtype")
+	->where($select->compare("{$e}.type", '=', 'object', ELGG_VALUE_STRING))
+	->andWhere($select->compare("{$e}.subtype", 'in', $object_types, ELGG_VALUE_STRING))
+	->andWhere($select->compare("a.name", '=', ENTITY_VIEW_COUNTER_ANNOTATION_NAME, ELGG_VALUE_STRING))
+	->groupBy("{$e}.type")
+	->addGroupBy("{$e}.subtype");
+
+$counts = elgg()->db->getData($select, function ($row) {
+	return (array) $row;
+});
+// order counts into easier format
+$ordered_counts = [];
+foreach ($counts as $count) {
+	$ordered_counts[$count['subtype']] = (int) $count['total'];
+}
 
 // listing
 $row = [
@@ -28,12 +54,7 @@ foreach ($object_types as $subtype) {
 		'switch' => true,
 	]));
 	
-	$count = elgg_get_annotations([
-		'type' => 'object',
-		'subtype' => $subtype,
-		'annotation_name' => ENTITY_VIEW_COUNTER_ANNOTATION_NAME,
-		'count' => true,
-	]);
+	$count = elgg_extract($subtype, $ordered_counts, 0);
 	$row[] = elgg_format_element('td', ['class' => 'center'], $count);
 	
 	if ($count > 0) {
