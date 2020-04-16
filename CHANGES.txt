@@ -1,6 +1,14 @@
 Version history
 ===============
 
+3.1 (2020-04-14):
+
+- added: option to remove all tracked views per content type
+
+3.0.2 (2020-03-31):
+
+- fixed: admins should not bypass logic check for trackable entities
+
 3.0.1 (2019-08-22):
 
 - several small chores/fixes

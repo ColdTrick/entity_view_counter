@@ -8,6 +8,11 @@ require_once(__DIR__ . '/lib/functions.php');
 
 return [
 	'bootstrap' => Bootstrap::class,
+	'actions' => [
+		'entity_view_counter/admin/reset_counter' => [
+			'access' => 'admin',
+		],
+	],
 	'hooks' => [
 		'permissions_check:annotate' => [
 			'all' => [
