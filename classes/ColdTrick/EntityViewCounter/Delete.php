@@ -13,7 +13,7 @@ class Delete {
 	 *
 	 * @return void
 	 */
-	public function deleteViews(\Elgg\Event $event) {
+	public static function deleteViews(\Elgg\Event $event) {
 		
 		$entity = $event->getObject();
 		if (!$entity instanceof \ElggEntity) {
