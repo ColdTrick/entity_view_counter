@@ -13,6 +13,13 @@ return [
 			'access' => 'admin',
 		],
 	],
+	'events' => [
+		'delete' => [
+			'object' => [
+				'\ColdTrick\EntityViewCounter\Delete::deleteViews' => [],
+			],
+		],
+	],
 	'hooks' => [
 		'permissions_check:annotate' => [
 			'all' => [
