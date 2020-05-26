@@ -1,6 +1,13 @@
 Version history
 ===============
 
+4.0 (2020-05-26):
+
+- added: bulk delete tracked views on entity delete
+- changed: increased minimal Elgg requirement to 3.3
+- changed: moved start.php to Bootstrap and elgg-plugin.php
+- fixed: admins should not bypass logic check for trackable entities
+
 3.1 (2020-04-14):
 
 - added: option to remove all tracked views per content type
