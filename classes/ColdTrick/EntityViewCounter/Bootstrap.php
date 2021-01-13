@@ -10,6 +10,9 @@ class Bootstrap extends DefaultPluginBootstrap {
 	 * {@inheritDoc}
 	 */
 	public function ready() {
+		elgg_register_ajax_view('entity_view_counter/stats');
+		elgg_register_ajax_view('advanced_statistics/entity_view_counter');
+		
 		$this->addViewCounter();
 	}
 	

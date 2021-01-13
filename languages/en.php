@@ -11,6 +11,20 @@ return [
 	'entity_view_counter:separator' => ".",
 	'entity_view_counter:view:kilo' => "%sK",
 	'entity_view_counter:view:mega' => "%sM",
+
+	'entity_view_counter:stats:title' => "Statistics",
+	'entity_view_counter:stats:total' => "Total",
+	'entity_view_counter:stats:today' => "Today",
+	'entity_view_counter:stats:yesterday' => "Yesterday",
+	'entity_view_counter:stats:last7d' => "Last 7 days",
+	'entity_view_counter:stats:last30d' => "Last 30 days",
+	'entity_view_counter:stats:last90d' => "Last 90 days",
+	'entity_view_counter:stats:last180d' => "Last 180 days",
+	'entity_view_counter:stats:thisyear' => "This year",
+	'entity_view_counter:stats:lastyear' => "Last year",
+
+	'entity_view_counter:stats:chart:recent' => "Recent views",
+	'entity_view_counter:stats:chart:years' => "Year totals",
 	
 	'entity_view_counter:action:admin:reset_counter:success' => "All tracked views have been removed",
 ];
