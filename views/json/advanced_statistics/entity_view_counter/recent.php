@@ -2,6 +2,8 @@
 
 use Elgg\Database\Select;
 
+$entity = elgg_extract('entity', $vars);
+
 $result = [
 	'options' => advanced_statistics_get_default_chart_options('date'),
 ];
