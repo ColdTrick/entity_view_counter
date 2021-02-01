@@ -1,10 +1,13 @@
 <?php
 /**
- * This file was created by Translation Editor v7.0.4
- * On 2021-01-13 16:52
+ * This file was created by Translation Editor v8.0
+ * On 2021-02-01 13:17
  */
 
 return array (
+  'entity_view_counter:account:views:top:title' => 'Top 5 meeste bekeken content',
+  'entity_view_counter:account:views:top:description' => 'Hieronder staat een lijst van content welke jij heb geschreven en anderen hebben bekeken in de laatste %d dagen, gesorteerd op de meest bekeken content eerst.',
+  'entity_view_counter:account:views:chart' => 'Weergaven over tijd',
   'entity_view_counter:stats:title' => 'Statistieken',
   'entity_view_counter:stats:total' => 'Totaal',
   'entity_view_counter:stats:today' => 'Vandaag',
