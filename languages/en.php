@@ -27,4 +27,8 @@ return [
 	'entity_view_counter:stats:chart:years' => "Year totals",
 	
 	'entity_view_counter:action:admin:reset_counter:success' => "All tracked views have been removed",
+	
+	'entity_view_counter:account:views:top:title' => "Top 5 most viewed content",
+	'entity_view_counter:account:views:top:description' => "Below is a list of content you wrote which others have viewed in the past %d days ordered by the most viewed content first.",
+	'entity_view_counter:account:views:chart' => "Views over time",
 ];

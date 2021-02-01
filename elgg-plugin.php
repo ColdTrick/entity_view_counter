@@ -39,4 +39,9 @@ return [
 			],
 		],
 	],
+	'view_extensions' => [
+		'core/settings/statistics' => [
+			'entity_view_counter/extends/account/statistics/views' => [],
+		],
+	],
 ];
