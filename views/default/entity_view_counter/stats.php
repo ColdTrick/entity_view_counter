@@ -17,8 +17,6 @@ $get_count = function(array $options = []) use ($entity) {
 		'guid' => $entity->guid,
 		'annotation_name' => ENTITY_VIEW_COUNTER_ANNOTATION_NAME,
 		'annotation_calculation' => 'count',
-		//$annotation_created_after
-		//$annotation_created_before
 	], $options);
 	
 	return elgg_get_annotations($options);
@@ -30,7 +28,7 @@ $result = '';
 $result .= '<table class="elgg-table">';
 
 // total
-$result .= '<tr><th>' . elgg_echo('entity_view_counter:stats:total') . '</th><td>' . $entity->entity_view_count . '</td></tr>';
+$result .= '<tr><th>' . elgg_echo('entity_view_counter:stats:total') . '</th><td>' . $get_count() . '</td></tr>';
 
 // today
 $count = $get_count(['annotation_created_after' => strtotime('today')]);
