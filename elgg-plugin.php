@@ -43,5 +43,8 @@ return [
 		'core/settings/statistics' => [
 			'entity_view_counter/extends/account/statistics/views' => [],
 		],
+		'entity_view_counter/extends/account/statistics/views' => [
+			'entity_view_counter/extends/account/statistics/views_graph' => [],
+		],
 	],
 ];
