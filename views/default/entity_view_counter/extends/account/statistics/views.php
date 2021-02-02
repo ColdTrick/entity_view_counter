@@ -20,45 +20,33 @@ $entities = elgg_get_entities([
 	'full_view' => false,
 ]);
 
-if (!empty($entities)) {
-	$body = elgg_view('output/longtext', [
-		'value' => elgg_echo('entity_view_counter:account:views:top:description', [$num_days]),
-	]);
-	
-	$lis = [];
-	foreach ($entities as $entity) {
-		$lis[] = elgg_format_element('li', ['class' => 'elgg-item'], elgg_view('output/url', [
-			'text' => $entity->getDisplayName(),
-			'href' => $entity->getURL(),
-			'is_trusted' => true,
-			'badge' => elgg_echo('entity_view_counter:entity:menu:views', [entity_view_counter_get_view_count($entity)]),
-		]));
-	}
-	
-	$body .= elgg_format_element('ul', ['class' => 'elgg-list'], implode(PHP_EOL, $lis));
-	
-	echo elgg_view_module('info', elgg_echo('entity_view_counter:account:views:top:title'), $body);
-}
-
-if (elgg_is_active_plugin('advanced_statistics')) {
-	// views graph
-	$count = elgg_get_annotations([
-		'owner_guid' => $user->guid,
+$view_count = function(\ElggEntity $entity) use ($num_days) {
+	return elgg_get_annotations([
+		'guid' => $entity->guid,
 		'count' => true,
+		'annotation_created_after' => "today - {$num_days} days",
 		'annotation_name' => ENTITY_VIEW_COUNTER_ANNOTATION_NAME,
 	]);
-	
-	if ($count > 10) {
-		echo elgg_view('advanced_statistics/elements/chart', [
-			'title' => elgg_echo('entity_view_counter:account:views:chart'),
-			'id' => 'entity-view-counter-account-views-chart',
-			'date_limited' => false,
-			'page' => 'entity_view_counter',
-			'section' => 'entity_view_counter',
-			'chart' => 'views',
-			'url_elements' => [
-				'guid' => $user->guid,
-			],
-		]);
-	}
+};
+
+if (empty($entities)) {
+	return;
 }
+
+$body = elgg_view('output/longtext', [
+	'value' => elgg_echo('entity_view_counter:account:views:top:description', [$num_days]),
+]);
+
+$lis = [];
+foreach ($entities as $entity) {
+	$lis[] = elgg_format_element('li', ['class' => 'elgg-item'], elgg_view('output/url', [
+		'text' => $entity->getDisplayName(),
+		'href' => $entity->getURL(),
+		'is_trusted' => true,
+		'badge' => elgg_echo('entity_view_counter:entity:menu:views', [$view_count($entity)]),
+	]));
+}
+
+$body .= elgg_format_element('ul', ['class' => 'elgg-list'], implode(PHP_EOL, $lis));
+
+echo elgg_view_module('info', elgg_echo('entity_view_counter:account:views:top:title'), $body);
