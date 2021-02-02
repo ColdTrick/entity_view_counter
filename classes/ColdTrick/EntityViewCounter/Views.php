@@ -38,7 +38,7 @@ class Views {
 		$title = elgg_echo('entity_view_counter:entity:menu:views', [$exact_count]); // eg 1024 views
 		$content = elgg_echo('entity_view_counter:entity:menu:views', [$count]); // eg 1k views
 		
-		if ($entity->canEdit()) {
+		if ($exact_count && $entity->canEdit()) {
 			$content = elgg_view('output/url', [
 				'href' => elgg_http_add_url_query_elements('ajax/view/entity_view_counter/stats', [
 					'guid' => $entity->guid,
