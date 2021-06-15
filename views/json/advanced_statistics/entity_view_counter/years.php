@@ -16,14 +16,14 @@ $qb->andWhere($qb->compare('a.name', '=', ENTITY_VIEW_COUNTER_ANNOTATION_NAME, E
 $qb->groupBy("FROM_UNIXTIME(a.time_created, '%Y')");
 $qb->orderBy('year', 'ASC');
 
-$query_result = $qb->execute()->fetchAll();
+$query_result = $qb->execute()->fetchAllAssociative();
 
 $data = [];
 if ($query_result) {
 	foreach ($query_result as $row) {
 		$data[] = [
-			$row->year,
-			(int) $row->total,
+			$row['year'],
+			(int) $row['total'],
 		];
 	}
 }

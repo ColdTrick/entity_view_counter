@@ -16,14 +16,14 @@ $qb->andWhere($qb->compare('a.entity_guid', '=', $entity->guid, ELGG_VALUE_GUID)
 $qb->andWhere($qb->compare('a.name', '=', ENTITY_VIEW_COUNTER_ANNOTATION_NAME, ELGG_VALUE_STRING));
 $qb->groupBy("FROM_UNIXTIME(a.time_created, '%Y-%m-%d')");
 
-$query_result = $qb->execute()->fetchAll();
+$query_result = $qb->execute()->fetchAllAssociative();
 
 $data = [];
 if ($query_result) {
 	foreach ($query_result as $row) {
 		$data[] = [
-			$row->date_created,
-			(int) $row->total,
+			$row['date_created'],
+			(int) $row['total'],
 		];
 	}
 }
