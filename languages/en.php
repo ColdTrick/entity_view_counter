@@ -8,10 +8,6 @@ return [
 	'entity_view_counter:settings:num_views' => "Total number of views",
 	'entity_view_counter:settings:delete' => "Remove all tracked views",
 	
-	'entity_view_counter:separator' => ".",
-	'entity_view_counter:view:kilo' => "%sK",
-	'entity_view_counter:view:mega' => "%sM",
-
 	'entity_view_counter:stats:title' => "Statistics",
 	'entity_view_counter:stats:total' => "Total",
 	'entity_view_counter:stats:today' => "Today",

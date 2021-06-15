@@ -1,12 +1,15 @@
 <?php
 
+use Elgg\Exceptions\Http\EntityNotFoundException;
+use Elgg\Exceptions\Http\EntityPermissionsException;
+
 $entity = elgg_extract('entity', $vars);
 if (!$entity instanceof \ElggEntity) {
-	throw new \Elgg\EntityNotFoundException();
+	throw new EntityNotFoundException();
 }
 
 if (!$entity->canEdit()) {
-	throw new \Elgg\EntityPermissionsException();
+	throw new EntityPermissionsException();
 }
 
 $time_created = $entity->time_created;

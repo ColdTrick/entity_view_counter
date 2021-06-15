@@ -1,4 +1,6 @@
 <?php
+use Elgg\Values;
+
 /**
  * Helper functions are defined here
  */
@@ -67,23 +69,5 @@ function entity_view_counter_get_view_count(ElggEntity $entity, $exact = false) 
 		return $count;
 	}
 	
-	$separator = substr(elgg_echo('entity_view_counter:separator'), 0, 1);
-	
-	if ($count < 9999) {
-		// make 1 decimal rounding (eg 1.5K)
-		$count = number_format(($count / 1000), 1, '.', $separator);
-		return elgg_echo('entity_view_counter:view:kilo', [$count]);
-	} elseif ($count < 1000000) {
-		// round to next thousand (eg. 10K)
-		$count = (int) ($count / 1000);
-		return elgg_echo('entity_view_counter:view:kilo', [$count]);
-	} elseif ($count < 9999999) {
-		// make 1 decimal rounding (eg 1.5M)
-		$count = number_format(($count / 1000000), 1, '.', $separator);
-		return elgg_echo('entity_view_counter:view:mega', [$count]);
-	}
-	
-	// round to next million (eg. 10M)
-	$count = (int) ($count / 1000000);
-	return elgg_echo('entity_view_counter:view:mega', [$count]);
+	return Values::shortFormatOutput($count, 1);
 }

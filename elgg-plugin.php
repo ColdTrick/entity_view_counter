@@ -7,6 +7,9 @@ define('ENTITY_VIEW_COUNTER_ANNOTATION_NAME', 'view_counter');
 require_once(__DIR__ . '/lib/functions.php');
 
 return [
+	'plugin' => [
+		'version' => '4.2',
+	],
 	'bootstrap' => Bootstrap::class,
 	'actions' => [
 		'entity_view_counter/admin/reset_counter' => [
