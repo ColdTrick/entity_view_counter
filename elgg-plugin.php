@@ -2,7 +2,9 @@
 
 use ColdTrick\EntityViewCounter\Bootstrap;
 
-define('ENTITY_VIEW_COUNTER_ANNOTATION_NAME', 'view_counter');
+if (!defined('ENTITY_VIEW_COUNTER_ANNOTATION_NAME')) {
+	define('ENTITY_VIEW_COUNTER_ANNOTATION_NAME', 'view_counter');
+}
 
 require_once(__DIR__ . '/lib/functions.php');
 
