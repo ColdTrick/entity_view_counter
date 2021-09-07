@@ -26,7 +26,7 @@ return [
 		],
 	],
 	'hooks' => [
-		'permissions_check:annotate' => [
+		'permissions_check:annotate:view_counter' => [
 			'all' => [
 				'\ColdTrick\EntityViewCounter\Permissions::canAnnotate' => [],
 			],
