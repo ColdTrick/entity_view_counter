@@ -23,7 +23,7 @@ class Bootstrap extends DefaultPluginBootstrap {
 	 */
 	protected function addViewCounter() {
 		// extend views of configured entity types/subtypes
-		$registered_types = get_registered_entity_types();
+		$registered_types = elgg_entity_types_with_capability('searchable');
 		if (empty($registered_types)) {
 			return;
 		}
