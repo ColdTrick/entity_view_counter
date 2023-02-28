@@ -2,23 +2,26 @@
 
 namespace ColdTrick\EntityViewCounter;
 
+/**
+ * Permissions
+ */
 class Permissions {
 	
 	/**
 	 * Returns if annotation is allowed
 	 *
-	 * @param \Elgg\Hook $hook 'permissions_check:annotate', 'all'
+	 * @param \Elgg\Event $event 'permissions_check:annotate', 'all'
 	 *
 	 * @return void|bool
 	 */
-	public static function canAnnotate(\Elgg\Hook $hook) {
+	public static function canAnnotate(\Elgg\Event $event) {
 
-		$entity = $hook->getEntityParam();
+		$entity = $event->getEntityParam();
 		if (!$entity instanceof \ElggEntity) {
 			return;
 		}
 		
-		if ($hook->getParam('annotation_name') !== ENTITY_VIEW_COUNTER_ANNOTATION_NAME) {
+		if ($event->getParam('annotation_name') !== ENTITY_VIEW_COUNTER_ANNOTATION_NAME) {
 			return;
 		}
 		
@@ -29,7 +32,7 @@ class Permissions {
 			}
 		}
 		
-		$user = $hook->getParam('user');
+		$user = $event->getUserParam();
 		
 		// logged out users and not the owner are allowed to be counted
 		if (empty($user) || ($user->guid !== $entity->owner_guid)) {

@@ -13,7 +13,7 @@ use Elgg\Values;
  *
  * @return bool
  */
-function entity_view_counter_is_configured_entity_type($type, $subtype = '') {
+function entity_view_counter_is_configured_entity_type(string $type, string $subtype): bool {
 	static $setting;
 	
 	if (!isset($setting)) {
@@ -44,16 +44,12 @@ function entity_view_counter_is_configured_entity_type($type, $subtype = '') {
 /**
  * Get the view count of an entity
  *
- * @param ElggEntity $entity the entity to check
+ * @param \ElggEntity $entity the entity to check
+ * @param bool        $exact  return the exact value
  *
- * @return false|string
+ * @return int|string
  */
-function entity_view_counter_get_view_count(ElggEntity $entity, $exact = false) {
-	
-	if (!$entity instanceof ElggEntity) {
-		return false;
-	}
-	
+function entity_view_counter_get_view_count(\ElggEntity $entity, bool $exact = false): int|string {
 	$count = $entity->entity_view_count;
 	if ($count === null) {
 		$count = $entity->countAnnotations(ENTITY_VIEW_COUNTER_ANNOTATION_NAME);

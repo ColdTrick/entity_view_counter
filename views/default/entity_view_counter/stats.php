@@ -101,7 +101,8 @@ if (!elgg_is_active_plugin('advanced_statistics')) {
 	return;
 }
 
-if ($get_count(['annotation_created_after' => strtotime('today -180 days')]) > 10) {
+$recent_count = $get_count(['annotation_created_after' => strtotime('today -180 days')]);
+if ($recent_count > 10) {
 	echo elgg_view('advanced_statistics/elements/chart', [
 		'title' => elgg_echo('entity_view_counter:stats:chart:recent'),
 		'id' => 'entity-view-counter-activity-recent',
@@ -115,7 +116,8 @@ if ($get_count(['annotation_created_after' => strtotime('today -180 days')]) > 1
 	]);
 }
 
-if ($get_count(['annotation_created_before' => strtotime('first day of january this year')])) {
+$year_count = $get_count(['annotation_created_before' => strtotime('first day of january this year')]);
+if (!empty($year_count)) {
 	echo elgg_view('advanced_statistics/elements/chart', [
 		'title' => elgg_echo('entity_view_counter:stats:chart:years'),
 		'id' => 'entity-view-counter-activity-years',

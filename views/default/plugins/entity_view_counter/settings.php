@@ -19,7 +19,7 @@ $select->select('count(*) as total')
 	->addSelect("{$e}.subtype")
 	->where($select->compare("{$e}.type", '=', 'object', ELGG_VALUE_STRING))
 	->andWhere($select->compare("{$e}.subtype", 'in', $object_types, ELGG_VALUE_STRING))
-	->andWhere($select->compare("a.name", '=', ENTITY_VIEW_COUNTER_ANNOTATION_NAME, ELGG_VALUE_STRING))
+	->andWhere($select->compare('a.name', '=', ENTITY_VIEW_COUNTER_ANNOTATION_NAME, ELGG_VALUE_STRING))
 	->groupBy("{$e}.type")
 	->addGroupBy("{$e}.subtype");
 

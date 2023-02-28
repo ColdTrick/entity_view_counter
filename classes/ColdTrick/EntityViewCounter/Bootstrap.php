@@ -4,15 +4,15 @@ namespace ColdTrick\EntityViewCounter;
 
 use Elgg\DefaultPluginBootstrap;
 
+/**
+ * Plugin bootstrap
+ */
 class Bootstrap extends DefaultPluginBootstrap {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public function ready() {
-		elgg_register_ajax_view('entity_view_counter/stats');
-		elgg_register_ajax_view('advanced_statistics/entity_view_counter');
-		
 		$this->addViewCounter();
 	}
 	
@@ -30,7 +30,6 @@ class Bootstrap extends DefaultPluginBootstrap {
 		
 		// let's extend the base views of these entities
 		foreach ($registered_types as $type => $subtypes) {
-			
 			if (empty($subtypes) || !is_array($subtypes)) {
 				// user and group don't have a subtype
 				elgg_extend_view($type . '/default', 'entity_view_counter/extends/counter', 450);
@@ -42,7 +41,7 @@ class Bootstrap extends DefaultPluginBootstrap {
 				$views = [
 					"{$type}/{$subtype}",
 					"{$type}/default",
-					];
+				];
 				
 				foreach ($views as $baseview) {
 					if (!elgg_view_exists($baseview, '', false)) {

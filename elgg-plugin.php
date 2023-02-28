@@ -24,8 +24,6 @@ return [
 				'\ColdTrick\EntityViewCounter\Delete::deleteViews' => [],
 			],
 		],
-	],
-	'hooks' => [
 		'permissions_check:annotate:view_counter' => [
 			'all' => [
 				'\ColdTrick\EntityViewCounter\Permissions::canAnnotate' => [],
@@ -51,5 +49,9 @@ return [
 		'entity_view_counter/extends/account/statistics/views' => [
 			'entity_view_counter/extends/account/statistics/views_graph' => [],
 		],
+	],
+	'view_options' => [
+		'entity_view_counter/stats' => ['ajax' => true],
+		'advanced_statistics/entity_view_counter' => ['ajax' => true],
 	],
 ];

@@ -2,26 +2,29 @@
 
 namespace ColdTrick\EntityViewCounter;
 
+/**
+ * Plugin settings callbacks
+ */
 class Settings {
 	
 	/**
 	 * Modifies the value of the entity_types setting
 	 *
-	 * @param \Elgg\Hook $hook 'setting', 'plugin'
+	 * @param \Elgg\Event $event 'setting', 'plugin'
 	 *
 	 * @return array
 	 */
-	public static function saveSettingEntityTypes(\Elgg\Hook $hook) {
+	public static function saveSettingEntityTypes(\Elgg\Event $event) {
 		
-		$plugin = $hook->getParam('plugin');
+		$plugin = $event->getParam('plugin');
 		if (!$plugin instanceof \ElggPlugin || $plugin->getID() !== 'entity_view_counter') {
 			return;
 		}
 		
-		if ($hook->getParam('name') !== 'entity_types') {
+		if ($event->getParam('name') !== 'entity_types') {
 			return;
 		}
 		
-		return json_encode($hook->getParam('value'));
+		return json_encode($event->getParam('value'));
 	}
 }

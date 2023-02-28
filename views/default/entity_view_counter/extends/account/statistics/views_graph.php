@@ -4,7 +4,7 @@
  */
 
 $user = elgg_get_page_owner_entity();
-if (!$user instanceof ElggUser || !$user->canEdit()) {
+if (!$user instanceof \ElggUser || !$user->canEdit()) {
 	return;
 }
 

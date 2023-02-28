@@ -2,18 +2,21 @@
 
 namespace ColdTrick\EntityViewCounter;
 
+/**
+ * Views
+ */
 class Views {
 	
 	/**
 	 * Adds menu items to the social menu
 	 *
-	 * @param \Elgg\Hook $hook 'view_vars', 'object/elements/imprint/contents'
+	 * @param \Elgg\Event $event 'view_vars', 'object/elements/imprint/contents'
 	 *
 	 * @return array
 	 */
-	public static function addImprint(\Elgg\Hook $hook) {
+	public static function addImprint(\Elgg\Event $event) {
 		
-		$vars = $hook->getValue();
+		$vars = $event->getValue();
 		
 		$entity = elgg_extract('entity', $vars);
 		if (!$entity instanceof \ElggEntity) {

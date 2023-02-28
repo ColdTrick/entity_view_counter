@@ -4,6 +4,9 @@ namespace ColdTrick\EntityViewCounter;
 
 use Elgg\Database\Delete as DBDelete;
 
+/**
+ * Delete callbacks
+ */
 class Delete {
 	
 	/**
