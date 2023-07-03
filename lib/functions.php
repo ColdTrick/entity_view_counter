@@ -1,9 +1,9 @@
 <?php
-use Elgg\Values;
-
 /**
  * Helper functions are defined here
  */
+
+use Elgg\Values;
 
 /**
  * Check if a type/subtype is configured to be tracked
