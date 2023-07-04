@@ -29,16 +29,21 @@ return [
 				'\ColdTrick\EntityViewCounter\Permissions::canAnnotate' => [],
 			],
 		],
-		'view_vars' => [
-			'object/elements/imprint/contents' => [
-				'\ColdTrick\EntityViewCounter\Views::addImprint' => [
-					'priority' => 600,
-				],
+		'seeds' => [
+			'database' => [
+				'\ColdTrick\EntityViewCounter\Seeder::register' => ['priority' => 600],
 			],
 		],
 		'setting' => [
 			'plugin' => [
 				'\ColdTrick\EntityViewCounter\Settings::saveSettingEntityTypes' => [],
+			],
+		],
+		'view_vars' => [
+			'object/elements/imprint/contents' => [
+				'\ColdTrick\EntityViewCounter\Views::addImprint' => [
+					'priority' => 600,
+				],
 			],
 		],
 	],
