@@ -41,6 +41,12 @@ $row = [
 
 $header = elgg_format_element('thead', [], elgg_format_element('tr', [], implode(PHP_EOL, $row)));
 
+// need an empty input in order to be able to unset everything
+echo elgg_view_field([
+	'#type' => 'hidden',
+	'name' => 'params[entity_types]',
+]);
+
 $rows = [];
 foreach ($object_types as $subtype) {
 	$row = [];

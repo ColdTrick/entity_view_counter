@@ -12,19 +12,19 @@ class Settings {
 	 *
 	 * @param \Elgg\Event $event 'setting', 'plugin'
 	 *
-	 * @return array
+	 * @return null|string
 	 */
-	public static function saveSettingEntityTypes(\Elgg\Event $event) {
-		
+	public static function saveSettingEntityTypes(\Elgg\Event $event): ?string {
 		$plugin = $event->getParam('plugin');
 		if (!$plugin instanceof \ElggPlugin || $plugin->getID() !== 'entity_view_counter') {
-			return;
+			return null;
 		}
 		
-		if ($event->getParam('name') !== 'entity_types') {
-			return;
+		$value = $event->getValue();
+		if ($event->getParam('name') !== 'entity_types' && !is_array($value)) {
+			return null;
 		}
 		
-		return json_encode($event->getParam('value'));
+		return json_encode($value);
 	}
 }
