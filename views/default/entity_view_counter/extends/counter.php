@@ -41,10 +41,12 @@ $session->set('entity_view_counter', $viewed_guids);
 $session_id = $session->getId();
 
 // log the user who is viewing
-// if no logged in user, log by entity
+// if no logged-in user, log by entity
 $owner_guid = elgg_get_logged_in_user_guid() ?: $entity->guid;
 
-$annotation_id = $entity->annotate(ENTITY_VIEW_COUNTER_ANNOTATION_NAME, $session_id, ACCESS_PUBLIC, $owner_guid);
+$annotation_id = elgg_call(ELGG_DISABLE_SYSTEM_LOG, function() use ($entity, $session_id, $owner_guid) {
+	return $entity->annotate(ENTITY_VIEW_COUNTER_ANNOTATION_NAME, $session_id, ACCESS_PUBLIC, $owner_guid);
+});
 if (!$annotation_id) {
 	// someone prevented the creation of the annotation
 	return;
@@ -62,6 +64,6 @@ if (is_null($current_count)) {
 	$current_count++;
 }
 
-elgg_call(ELGG_IGNORE_ACCESS, function () use ($entity, $current_count) {
+elgg_call(ELGG_IGNORE_ACCESS | ELGG_DISABLE_SYSTEM_LOG, function () use ($entity, $current_count) {
 	$entity->entity_view_count = $current_count;
 });
