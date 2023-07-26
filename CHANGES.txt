@@ -1,6 +1,12 @@
 Version history
 ===============
 
+7.1 (2023-07-26):
+
+- added: database seeder
+- fixed: disable system_log from tracking view count modifications
+- fixed: unable to unset all tracked entity types
+
 7.0 (2023-06-02):
 
 - changed: conflict with Elgg < 5.0
