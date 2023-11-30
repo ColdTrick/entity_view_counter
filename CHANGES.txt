@@ -1,6 +1,10 @@
 Version history
 ===============
 
+7.1.1 (2023-11-30):
+
+- several small chores/fixes
+
 7.1 (2023-07-26):
 
 - added: database seeder
