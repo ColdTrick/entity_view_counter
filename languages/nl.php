@@ -20,7 +20,6 @@ return array (
   'entity_view_counter:stats:lastyear' => 'Vorig jaar',
   'entity_view_counter:stats:chart:recent' => 'Recente weergaven',
   'entity_view_counter:stats:chart:years' => 'Jaar totalen',
-  'entity_view_counter:settings:num_views' => 'Totaal aantal weergaven',
   'entity_view_counter:settings:delete' => 'Verwijder alle gevolgde weergaven',
   'entity_view_counter:action:admin:reset_counter:success' => 'Alle gevolgde weergaven zijn verwijderd',
   'entity_view_counter:entity:menu:views' => '%s weergaven',
