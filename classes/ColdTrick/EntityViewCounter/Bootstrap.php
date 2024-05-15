@@ -10,7 +10,7 @@ use Elgg\DefaultPluginBootstrap;
 class Bootstrap extends DefaultPluginBootstrap {
 
 	/**
-	 * {@inheritDoc}
+	 * {@inheritdoc}
 	 */
 	public function ready() {
 		$this->addViewCounter();
@@ -21,7 +21,7 @@ class Bootstrap extends DefaultPluginBootstrap {
 	 *
 	 * @return void
 	 */
-	protected function addViewCounter() {
+	protected function addViewCounter(): void {
 		// extend views of configured entity types/subtypes
 		$registered_types = elgg_entity_types_with_capability('searchable');
 		if (empty($registered_types)) {

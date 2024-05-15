@@ -12,17 +12,16 @@ class Permissions {
 	 *
 	 * @param \Elgg\Event $event 'permissions_check:annotate', 'all'
 	 *
-	 * @return void|bool
+	 * @return null|bool
 	 */
-	public static function canAnnotate(\Elgg\Event $event) {
-
+	public static function canAnnotate(\Elgg\Event $event): ?bool {
 		$entity = $event->getEntityParam();
 		if (!$entity instanceof \ElggEntity) {
-			return;
+			return null;
 		}
 		
 		if ($event->getParam('annotation_name') !== ENTITY_VIEW_COUNTER_ANNOTATION_NAME) {
-			return;
+			return null;
 		}
 		
 		// let's block search engine spiders/bots
@@ -34,7 +33,7 @@ class Permissions {
 		
 		$user = $event->getUserParam();
 		
-		// logged out users and not the owner are allowed to be counted
+		// logged-out users and not the owner are allowed to be counted
 		if (empty($user) || ($user->guid !== $entity->owner_guid)) {
 			if (entity_view_counter_is_configured_entity_type($entity->getType(), $entity->getSubtype())) {
 				return true;

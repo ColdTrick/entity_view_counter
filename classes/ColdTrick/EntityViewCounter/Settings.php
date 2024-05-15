@@ -21,7 +21,7 @@ class Settings {
 		}
 		
 		$value = $event->getValue();
-		if ($event->getParam('name') !== 'entity_types' && !is_array($value)) {
+		if (!is_array($value)) {
 			return null;
 		}
 		

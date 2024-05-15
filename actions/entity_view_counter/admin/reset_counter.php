@@ -1,6 +1,9 @@
 <?php
 
+use Elgg\Database\AnnotationsTable;
 use Elgg\Database\Delete;
+use Elgg\Database\EntityTable;
+use Elgg\Database\MetadataTable;
 
 $subtype = get_input('subtype');
 if (empty($subtype)) {
@@ -12,8 +15,8 @@ set_time_limit(0);
 
 // cleanup tracked annotations
 // use direct DB query to bulk delete and not trigger events
-$annotations = Delete::fromTable('annotations');
-$entities = $annotations->subquery('entities');
+$annotations = Delete::fromTable(AnnotationsTable::TABLE_NAME);
+$entities = $annotations->subquery(EntityTable::TABLE_NAME);
 $entities->select('guid')
 	->where($annotations->compare('type', '=', 'object', ELGG_VALUE_STRING))
 	->andWhere($annotations->compare('subtype', '=', $subtype, ELGG_VALUE_STRING));
@@ -25,8 +28,8 @@ elgg()->db->deleteData($annotations);
 
 // cleanup caching metadata
 // use direct DB query to bulk delete and not trigger events
-$metadata = Delete::fromTable('metadata');
-$entities = $metadata->subquery('entities');
+$metadata = Delete::fromTable(MetadataTable::TABLE_NAME);
+$entities = $metadata->subquery(EntityTable::TABLE_NAME);
 $entities->select('guid')
 	->where($metadata->compare('type', '=', 'object', ELGG_VALUE_STRING))
 	->andWhere($metadata->compare('subtype', '=', $subtype, ELGG_VALUE_STRING));

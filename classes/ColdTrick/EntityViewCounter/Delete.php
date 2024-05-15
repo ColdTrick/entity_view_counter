@@ -2,6 +2,7 @@
 
 namespace ColdTrick\EntityViewCounter;
 
+use Elgg\Database\AnnotationsTable;
 use Elgg\Database\Delete as DBDelete;
 
 /**
@@ -17,14 +18,13 @@ class Delete {
 	 * @return void
 	 */
 	public static function deleteViews(\Elgg\Event $event) {
-		
 		$entity = $event->getObject();
 		if (!$entity instanceof \ElggEntity) {
 			return;
 		}
 		
 		// Do a bulk delete to save on performance (eg. not for every annotation a delete sequence)
-		$delete = DBDelete::fromTable('annotations');
+		$delete = DBDelete::fromTable(AnnotationsTable::TABLE_NAME);
 		$delete->where($delete->compare('entity_guid', '=', $entity->guid, ELGG_VALUE_GUID))
 			->andWhere($delete->compare('name', '=', ENTITY_VIEW_COUNTER_ANNOTATION_NAME, ELGG_VALUE_STRING));
 		

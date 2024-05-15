@@ -51,7 +51,7 @@ if (empty($rows)) {
 	return;
 }
 
-elgg_require_js('plugins/entity_view_counter/settings');
+elgg_import_esm('plugins/entity_view_counter/settings');
 
 $body = elgg_format_element('tbody', [], implode(PHP_EOL, $rows));
 

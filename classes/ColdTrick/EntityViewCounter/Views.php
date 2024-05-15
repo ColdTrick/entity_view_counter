@@ -12,28 +12,27 @@ class Views {
 	 *
 	 * @param \Elgg\Event $event 'view_vars', 'object/elements/imprint/contents'
 	 *
-	 * @return array
+	 * @return null|array
 	 */
-	public static function addImprint(\Elgg\Event $event) {
-		
+	public static function addImprint(\Elgg\Event $event): ?array {
 		$vars = $event->getValue();
 		
 		$entity = elgg_extract('entity', $vars);
 		if (!$entity instanceof \ElggEntity) {
-			return;
+			return null;
 		}
 		
 		if (!elgg_extract('show_entity_view_counter', $vars, true)) {
-			return;
+			return null;
 		}
 		
 		if (!entity_view_counter_is_configured_entity_type($entity->getType(), $entity->getSubtype())) {
-			return;
+			return null;
 		}
 		
 		$count = entity_view_counter_get_view_count($entity);
-		if ($count === false) {
-			return;
+		if (empty($count)) {
+			return null;
 		}
 		
 		$exact_count = entity_view_counter_get_view_count($entity, true);

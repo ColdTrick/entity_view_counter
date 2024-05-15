@@ -12,13 +12,10 @@ use Elgg\Database\Update;
  */
 class Seeder extends Seed {
 	
-	/**
-	 * @var array supported types for seeding
-	 */
-	protected $supported_types;
+	protected ?array $supported_types;
 	
 	/**
-	 * {@inheritDoc}
+	 * {@inheritdoc}
 	 */
 	public function seed() {
 		$this->advance($this->getCount());
@@ -53,7 +50,7 @@ class Seeder extends Seed {
 	}
 	
 	/**
-	 * {@inheritDoc}
+	 * {@inheritdoc}
 	 */
 	public function unseed() {
 		$options = [
@@ -95,14 +92,14 @@ class Seeder extends Seed {
 	}
 	
 	/**
-	 * {@inheritDoc}
+	 * {@inheritdoc}
 	 */
 	public static function getType(): string {
 		return 'entity_view_counter';
 	}
 	
 	/**
-	 * {@inheritDoc}
+	 * {@inheritdoc}
 	 */
 	protected function getCountOptions(): array {
 		return [
