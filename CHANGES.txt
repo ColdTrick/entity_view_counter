@@ -1,6 +1,10 @@
 Version history
 ===============
 
+8.0 (2024-06-28):
+
+- changed: updated for Elgg 6
+
 7.2 (2024-04-03):
 
 - removed: no longer calculate total view counts on plugin settings page
