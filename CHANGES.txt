@@ -1,6 +1,10 @@
 Version history
 ===============
 
+8.0.1 (2024-10-10):
+
+- fixed: advanced statistics graphs working again
+
 8.0 (2024-06-28):
 
 - changed: updated for Elgg 6
