@@ -23,6 +23,9 @@ return [
 			'object' => [
 				'\ColdTrick\EntityViewCounter\Delete::deleteViews' => [],
 			],
+			'user' => [
+				'\ColdTrick\EntityViewCounter\Delete::deleteUserViews' => [],
+			],
 		],
 		'permissions_check:annotate:view_counter' => [
 			'all' => [
