@@ -21,10 +21,6 @@ class Settings {
 		}
 		
 		$value = $event->getValue();
-		if (!is_array($value)) {
-			return null;
-		}
-		
-		return json_encode($value);
+		return is_array($value) ? json_encode($value) : null;
 	}
 }

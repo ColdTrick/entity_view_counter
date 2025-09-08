@@ -39,6 +39,7 @@ class Bootstrap extends DefaultPluginBootstrap {
 			foreach ($subtypes as $subtype) {
 				// allow for fallback views
 				$views = [
+					"{$type}/{$subtype}/full",
 					"{$type}/{$subtype}",
 					"{$type}/default",
 				];
