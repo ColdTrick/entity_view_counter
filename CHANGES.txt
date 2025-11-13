@@ -1,6 +1,11 @@
 Version history
 ===============
 
+8.1 (2025-11-13):
+
+- changed: support Elgg v6.3 object subviews
+- fixed: user delete performance
+
 8.0.1 (2024-10-10):
 
 - fixed: advanced statistics graphs working again
