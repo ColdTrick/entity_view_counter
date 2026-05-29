@@ -1,6 +1,10 @@
 Version history
 ===============
 
+8.1.1 (2026-05-29):
+
+- several small chores/fixes
+
 8.1 (2025-11-13):
 
 - changed: support Elgg v6.3 object subviews
