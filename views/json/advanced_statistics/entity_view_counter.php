@@ -10,7 +10,14 @@ if (!$entity instanceof \ElggEntity) {
 	throw new EntityNotFoundException();
 }
 
-if (!$entity->canEdit()) {
+$can_view = false;
+if (elgg_get_plugin_setting('view_permission', 'entity_view_counter') === 'logged_in' && elgg_is_logged_in()) {
+	$can_view = true;
+} elseif ($entity->canEdit()) {
+	$can_view = true;
+}
+
+if (!$can_view) {
 	throw new EntityPermissionsException();
 }
 
