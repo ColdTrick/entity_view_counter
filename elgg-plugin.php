@@ -13,6 +13,9 @@ return [
 		'version' => '8.1.1',
 	],
 	'bootstrap' => Bootstrap::class,
+	'settings' => [
+		'view_permission' => 'edit',
+	],
 	'actions' => [
 		'entity_view_counter/admin/reset_counter' => [
 			'access' => 'admin',

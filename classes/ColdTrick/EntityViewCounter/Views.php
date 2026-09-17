@@ -40,9 +40,18 @@ class Views {
 		$title = elgg_echo('entity_view_counter:entity:menu:views', [$exact_count]); // eg 1024 views
 		$content = elgg_echo('entity_view_counter:entity:menu:views', [$count]); // eg 1k views
 		
-		if ($exact_count && $entity->canEdit()) {
+		$can_view = false;
+		if (elgg_get_plugin_setting('view_permission', 'entity_view_counter') === 'logged_in' && elgg_is_logged_in()) {
+			$can_view = true;
+		} elseif ($entity->canEdit()) {
+			$can_view = true;
+		}
+		
+		if ($exact_count && $can_view) {
 			$content = elgg_view('output/url', [
-				'href' => elgg_http_add_url_query_elements('ajax/view/entity_view_counter/stats', [
+				'href' => elgg_generate_url('ajax', [
+					'type' => 'view',
+					'segments' => 'entity_view_counter/stats',
 					'guid' => $entity->guid,
 				]),
 				'text' => $content,

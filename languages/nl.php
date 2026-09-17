@@ -1,10 +1,15 @@
 <?php
 /**
- * This file was created by Translation Editor v11.1
- * On 2023-05-17 14:32
+ * This file was created by Translation Editor v14.0.6
+ * On 2026-09-17 11:44
  */
 
 return array (
+  'entity_view_counter:settings:permissions' => 'Rechten instellingen',
+  'entity_view_counter:settings:permissions:view_details' => 'Wie mag de entity weergave statistieken bekijken',
+  'entity_view_counter:settings:permissions:view_details:edit' => 'Gebebruikers met bewerk rechten',
+  'entity_view_counter:settings:permissions:view_details:logged_in' => 'Aangemelde gebruikers',
+  'entity_view_counter:settings:tracked_entities' => 'Gevolgde entities',
   'entity_view_counter:account:views:top:title' => 'Top 5 meeste bekeken content',
   'entity_view_counter:account:views:top:description' => 'Hieronder staat een lijst van content welke jij heb geschreven en anderen hebben bekeken in de laatste %d dagen, gesorteerd op de meest bekeken content eerst.',
   'entity_view_counter:account:views:chart' => 'Weergaven over tijd',
@@ -20,9 +25,9 @@ return array (
   'entity_view_counter:stats:lastyear' => 'Vorig jaar',
   'entity_view_counter:stats:chart:recent' => 'Recente weergaven',
   'entity_view_counter:stats:chart:years' => 'Jaar totalen',
-  'entity_view_counter:settings:delete' => 'Verwijder alle gevolgde weergaven',
+  'entity_view_counter:settings:tracked_entities:delete' => 'Verwijder alle gevolgde weergaven',
   'entity_view_counter:action:admin:reset_counter:success' => 'Alle gevolgde weergaven zijn verwijderd',
   'entity_view_counter:entity:menu:views' => '%s weergaven',
-  'entity_view_counter:settings:description' => 'Om de weergaven van een entity te volgen moet je deze hieronder selecteren. Als je een nieuwe plugin activeert moet je hier misschien terug komen, omdat standaard nieuwe entity types niet worden gevolgd.',
-  'entity_view_counter:settings:entity_type' => 'Entity type om te volgen',
+  'entity_view_counter:settings:tracked_entities:description' => 'Om de weergaven van een entity te volgen moet je deze hieronder selecteren. Als je een nieuwe plugin activeert moet je hier misschien terug komen, omdat standaard nieuwe entity types niet worden gevolgd.',
+  'entity_view_counter:settings:tracked_entities:entity_type' => 'Entity type om te volgen',
 );

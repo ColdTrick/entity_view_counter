@@ -3,9 +3,14 @@
 return [
 	'entity_view_counter:entity:menu:views' => "%s views",
 	
-	'entity_view_counter:settings:description' => "In order to track the views of an entity type, please check it below. If you enable a new plugin you may have to check back here, because by default the entity type will NOT be tracked.",
-	'entity_view_counter:settings:entity_type' => "Entity type to be tracked",
-	'entity_view_counter:settings:delete' => "Remove all tracked views",
+	'entity_view_counter:settings:permissions' => "Permission settings",
+	'entity_view_counter:settings:permissions:view_details' => "Who can view the entity view statistics",
+	'entity_view_counter:settings:permissions:view_details:edit' => "Users with edit permissions",
+	'entity_view_counter:settings:permissions:view_details:logged_in' => "Logged in users",
+	'entity_view_counter:settings:tracked_entities' => "Tracked entities",
+	'entity_view_counter:settings:tracked_entities:description' => "In order to track the views of an entity type, please check it below. If you enable a new plugin you may have to check back here, because by default the entity type will NOT be tracked.",
+	'entity_view_counter:settings:tracked_entities:entity_type' => "Entity type to be tracked",
+	'entity_view_counter:settings:tracked_entities:delete' => "Remove all tracked views",
 	
 	'entity_view_counter:stats:title' => "Statistics",
 	'entity_view_counter:stats:total' => "Total",
