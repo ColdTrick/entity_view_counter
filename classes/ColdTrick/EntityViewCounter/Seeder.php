@@ -74,10 +74,10 @@ class Seeder extends Seed {
 		
 		$this->progress->setMaxSteps($count);
 		
-		/* @var $annotations \ElggBatch */
+		/** @var \ElggBatch $annotations */
 		$annotations = elgg_get_annotations($options);
 		
-		/* @var $annotation \ElggAnnotation */
+		/** @var \ElggAnnotation $annotation */
 		foreach ($annotations as $annotation) {
 			if ($annotation->delete()) {
 				$this->log("Deleted entity view {$annotation->id}");
