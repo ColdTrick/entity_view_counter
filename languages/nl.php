@@ -7,7 +7,7 @@
 return array (
   'entity_view_counter:settings:permissions' => 'Rechten instellingen',
   'entity_view_counter:settings:permissions:view_details' => 'Wie mag de entity weergave statistieken bekijken',
-  'entity_view_counter:settings:permissions:view_details:edit' => 'Gebebruikers met bewerk rechten',
+  'entity_view_counter:settings:permissions:view_details:edit' => 'Gebruikers met bewerk rechten',
   'entity_view_counter:settings:permissions:view_details:logged_in' => 'Aangemelde gebruikers',
   'entity_view_counter:settings:tracked_entities' => 'Gevolgde entities',
   'entity_view_counter:account:views:top:title' => 'Top 5 meeste bekeken content',

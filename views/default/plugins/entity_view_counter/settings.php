@@ -44,13 +44,11 @@ $object_types = elgg_extract('object', elgg_entity_types_with_capability('search
 foreach ($object_types as $subtype) {
 	$row = [];
 	
-	$row[] = elgg_format_element('td', [], elgg_view('input/checkbox', [
+	$row[] = elgg_format_element('td', [], elgg_view_field([
+		'#type' => 'switch',
+		'#label' => elgg_echo("item:object:{$subtype}"),
 		'name' => "params[entity_types][object][{$subtype}]",
-		'value' => 1,
-		'default' => false,
-		'checked' => entity_view_counter_is_configured_entity_type('object', $subtype),
-		'label' => elgg_echo("item:object:{$subtype}"),
-		'switch' => true,
+		'value' => entity_view_counter_is_configured_entity_type('object', $subtype),
 	]));
 	
 	$row[] = elgg_format_element('td', ['class' => 'center'], elgg_view('output/url', [
