@@ -1,6 +1,10 @@
 Version history
 ===============
 
+8.2.1 (2026-11-12):
+
+- several small chores/fixes
+
 8.2 (2026-10-01):
 
 - added: plugin setting to control who can view entity stats
